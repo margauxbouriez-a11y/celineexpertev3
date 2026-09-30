@@ -1,14 +1,35 @@
+:root {
+  --navy: #142640;
+  --navy-deep: #0d1c31;
+  --navy-mid: #253c5b;
+  --gold: #c5a45f;
+  --gold-strong: #8c6725;
+  --gold-light: #e0c783;
+  --surface: #fafbfc;
+  --surface-blue: #edf1f6;
+  --line: #dce3eb;
+  --body-copy: #526176;
+  --muted-copy: #738095;
+}
+
 body {
-  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
-    'Arial', sans-serif;
-  margin: 0 auto;
+  margin: 0;
+  background: var(--surface);
+  color: var(--navy);
+  font-family: 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
   font-size: 16px;
   line-height: 1.65;
-  word-break: break-word;
-  font-kerning: auto;
-  font-variant: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  hyphens: auto;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body, h1, h2, h3, p { margin-top: 0; }
+::selection { background: #e9ddbd; color: var(--navy-deep); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
 }
