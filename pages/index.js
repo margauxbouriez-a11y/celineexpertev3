@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/home.module.css'
 
-const BASE_PATH = '/celineexpertev3'
-
 function Home() {
   return (
     <>
@@ -16,377 +14,363 @@ function Home() {
       </Head>
 
       <header className={styles.header}>
-        <a
-          className={styles.brand}
-          href="#home"
-          aria-label="Céline Bouriez, home"
-        >
+        <a className={styles.brand} href="#home" aria-label="Céline Bouriez, home">
           <span className={styles.brandMark}>CB</span>
           <span className={styles.brandName}>Regulatory Affairs</span>
         </a>
-
         <nav className={styles.nav} aria-label="Main navigation">
           <a href="#expertise">Expertise</a>
           <a href="#approach">Approach</a>
           <a href="#education">Education</a>
           <a href="#career">Career</a>
         </nav>
-
         <a className={styles.headerCta} href="#contact">
           Get in touch <span aria-hidden="true">↗</span>
         </a>
       </header>
 
       <main id="home">
-
-        {/* HERO */}
         <section className={styles.hero}>
           <div className={styles.heroInner}>
-
             <div className={styles.heroCopy}>
               <p className={styles.eyebrow}>
-                <span />
-                Independent regulatory affairs consulting
+                <span /> Independent regulatory affairs consulting
               </p>
-
               <h1>
                 Regulatory clarity.
                 <br />
                 <em>Confident market access.</em>
               </h1>
-
               <p className={styles.lede}>
-                From first strategy to approval, I help teams bring medicines,
-                biologics, medical devices and IVDs to market with clear advice
-                and rigorous regulatory submissions.
+                From first strategy to approval, I help teams bring medicines, biologics,
+                medical devices and IVDs to market with clear advice and rigorous regulatory
+                submissions.
               </p>
-
               <div className={styles.credentials}>
                 <span>Doctor of Pharmacy</span>
                 <span>Residency in Industrial Pharmacy</span>
                 <span>Postgraduate Diploma in Health Law</span>
               </div>
-
               <div className={styles.heroActions}>
                 <a className={styles.primaryButton} href="#contact">
-                  Let’s discuss your project{' '}
-                  <span aria-hidden="true">↗</span>
+                  Let’s discuss your project <span aria-hidden="true">↗</span>
                 </a>
-
                 <a className={styles.textLink} href="#expertise">
-                  Explore my expertise{' '}
-                  <span aria-hidden="true">↓</span>
+                  Explore my expertise <span aria-hidden="true">↓</span>
                 </a>
               </div>
-
               <p className={styles.experienceNote}>
-                18 years in industry across medicines, biologics and medical
-                devices
+                18 years in industry across medicines, biologics and medical devices
               </p>
             </div>
 
             <div className={styles.heroVisual}>
               <div className={styles.heroPortraitCard}>
-                <span className={styles.portraitLabel}>
-                  Céline Bouriez
-                </span>
-
+                <span className={styles.portraitLabel}>Céline Bouriez</span>
                 <img
                   className={styles.heroImage}
                   src="/celineexpertev3/celine-bouriez.png"
                   alt="Céline Bouriez, healthcare regulatory affairs consultant"
+                  onError={(event) => {
+                    event.currentTarget.style.display = 'none'
+                  }}
                 />
-
                 <div className={styles.portraitMeta}>
                   <strong>18+</strong>
                   <span>years in regulatory affairs</span>
                 </div>
               </div>
             </div>
-
           </div>
         </section>
 
-        {/* PRODUCT GALLERY */}
-        <section
-          className={styles.productGallery}
-          aria-label="Areas of regulatory expertise"
-        >
+        <section className={styles.productGallery} aria-label="Areas of regulatory expertise">
           <div className={styles.galleryHeading}>
-            <p className={styles.eyebrow}>
-              Cross-functional regulatory expertise
-            </p>
-
+            <p className={styles.eyebrow}>Cross-functional regulatory expertise</p>
             <h2>
               A clear route to market
               <br />
               <em>for every product.</em>
             </h2>
-
             <p className={styles.galleryIntro}>
-              Regulatory strategy and submission support for medicines,
-              biologics, medical devices and in vitro diagnostics, from
-              development through market authorisation.
+              Regulatory strategy and submission support for medicines, biologics, medical
+              devices and in vitro diagnostics, from development through market authorisation.
             </p>
           </div>
-
           <div className={styles.productGrid}>
-
             <figure className={styles.productFigure}>
-              <img
-                src="/celineexpertev3/medicine-tablets.jpg"
-                alt="Medicinal tablets and capsules"
-              />
+              <img src="/celineexpertev3/medicine-tablets.jpg" alt="Medicinal tablets and capsules" />
               <figcaption>
                 <strong>Medicines &amp; biologics</strong>
               </figcaption>
             </figure>
-
             <figure className={styles.productFigure}>
-              <img
-                src="/celineexpertev3/pharmaceutical-research.jpg"
-                alt="Medical device product development"
-              />
+              <img src="/celineexpertev3/pharmaceutical-research.jpg" alt="Medical device product development" />
               <figcaption>
                 <strong>Medical devices</strong>
               </figcaption>
             </figure>
-
             <figure className={styles.productFigure}>
               <img
                 src="/celineexpertev3/healthcare-products.jpg"
-                alt="Healthcare products"
+                alt="Healthcare research in a diagnostic laboratory"
               />
               <figcaption>
                 <strong>In vitro diagnostics</strong>
               </figcaption>
             </figure>
-
           </div>
         </section>
 
-        {/* EXPERTISE */}
-        <section
-          id="expertise"
-          className={styles.section}
-        >
-          <div className={styles.sectionLabel}>
-            <span>01</span>
-            <span>Expertise</span>
-          </div>
-
-          <div className={styles.sectionContent}>
+        <section className={styles.expertise} id="expertise">
+          <div className={styles.sectionHeading}>
+            <p className={styles.eyebrow}>Support tailored to your objectives</p>
             <h2>
-              Regulatory expertise
+              The right regulatory strategy,
               <br />
-              <em>with a business perspective.</em>
+              <em>at the right time.</em>
             </h2>
+          </div>
+          <div className={styles.serviceList}>
+            <article className={styles.service}>
+              <span className={styles.serviceNumber}>01</span>
+              <div>
+                <h3>Market entry</h3>
+                <p>
+                  A clear route to market, the right regulatory pathway and focused support
+                  through approval.
+                </p>
+              </div>
+              <span className={styles.serviceArrow} aria-hidden="true">↗</span>
+            </article>
+            <article className={styles.service}>
+              <span className={styles.serviceNumber}>02</span>
+              <div>
+                <h3>Regulatory submissions &amp; compliance</h3>
+                <p>
+                  Submission-ready dossiers built on coherent evidence, rigorous review and a
+                  clear regulatory narrative.
+                </p>
+              </div>
+              <span className={styles.serviceArrow} aria-hidden="true">↗</span>
+            </article>
+            <article className={styles.service}>
+              <span className={styles.serviceNumber}>03</span>
+              <div>
+                <h3>Regulatory affairs support</h3>
+                <p>
+                  Experienced, hands-on support that helps teams resolve questions and keep
+                  critical milestones on track.
+                </p>
+              </div>
+              <span className={styles.serviceArrow} aria-hidden="true">↗</span>
+            </article>
+          </div>
+        </section>
 
+        <section className={styles.approach} id="approach">
+          <div className={styles.approachIntro}>
+            <p className={styles.eyebrow}>A clear process, a direct conversation</p>
+            <h2>
+              Move forward
+              <br />
+              <em>with clarity.</em>
+            </h2>
             <p>
-              I support pharmaceutical, biotechnology and medical device
-              companies throughout the regulatory pathway, combining scientific
-              expertise with a practical understanding of business priorities.
+              Every product, market and team has its own needs. I tailor my support to your
+              objectives, turning regulatory complexity into clear, practical decisions.
             </p>
-
-            <div className={styles.expertiseGrid}>
-              <div>
-                <span className={styles.cardNumber}>01</span>
-                <h3>Regulatory strategy</h3>
-                <p>
-                  Market entry strategy, regulatory pathways, classification,
-                  development plans and interactions with health authorities.
-                </p>
-              </div>
-
-              <div>
-                <span className={styles.cardNumber}>02</span>
-                <h3>Submissions</h3>
-                <p>
-                  Preparation, review and coordination of regulatory
-                  submissions for medicines, biologics, medical devices and
-                  IVDs.
-                </p>
-              </div>
-
-              <div>
-                <span className={styles.cardNumber}>03</span>
-                <h3>International markets</h3>
-                <p>
-                  Regulatory support across Europe, the United States and
-                  Asian markets, adapting global strategies to local
-                  requirements.
-                </p>
-              </div>
-
-              <div>
-                <span className={styles.cardNumber}>04</span>
-                <h3>Lifecycle management</h3>
-                <p>
-                  Post-authorisation activities, variations, renewals,
-                  regulatory intelligence and ongoing product compliance.
-                </p>
-              </div>
-            </div>
           </div>
-        </section>
-
-        {/* APPROACH */}
-        <section
-          id="approach"
-          className={styles.sectionAlt}
-        >
-          <div className={styles.sectionLabel}>
-            <span>02</span>
-            <span>Approach</span>
-          </div>
-
-          <div className={styles.sectionContent}>
-            <h2>
-              Clear advice.
-              <br />
-              <em>Practical execution.</em>
-            </h2>
-
-            <div className={styles.approachGrid}>
+          <div className={styles.steps}>
+            <div className={styles.step}>
+              <span>01</span>
               <div>
                 <h3>Understand</h3>
-                <p>
-                  I start by understanding the product, development strategy,
-                  business objectives and regulatory context.
-                </p>
+                <p>Clarify the product, objectives and timeline to establish a shared assessment.</p>
               </div>
-
+            </div>
+            <div className={styles.step}>
+              <span>02</span>
               <div>
-                <h3>Define</h3>
+                <h3>Plan</h3>
                 <p>
-                  Together we identify the most appropriate regulatory pathway
-                  and establish clear priorities and milestones.
+                  Build a regulatory roadmap aligned with requirements, priorities and available
+                  resources.
                 </p>
               </div>
-
+            </div>
+            <div className={styles.step}>
+              <span>03</span>
               <div>
                 <h3>Deliver</h3>
-                <p>
-                  I provide hands-on support through submissions, authority
-                  interactions and the key decisions required for market access.
-                </p>
+                <p>Prepare robust submissions and support their progress through to a decision.</p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* EDUCATION */}
-        <section
-          id="education"
-          className={styles.section}
-        >
-          <div className={styles.sectionLabel}>
-            <span>03</span>
-            <span>Education</span>
+        <section className={styles.qualifications} id="education">
+          <div className={styles.sectionHeading}>
+            <p className={styles.eyebrow}>Education &amp; specialist training</p>
+            <h2>
+              A scientific and legal
+              <br />
+              <em>foundation.</em>
+            </h2>
+          </div>
+          <div className={styles.qualificationList}>
+            <article className={styles.qualification}>
+              <span>01</span>
+              <h3>Doctor of Pharmacy</h3>
+              <p>A rigorous scientific foundation in medicines and healthcare.</p>
+            </article>
+            <article className={styles.qualification}>
+              <span>02</span>
+              <h3>
+                Hospital Residency in Pharmacy
+                <br />
+                Industrial Pharmacy
+              </h3>
+              <p>
+                Specialist university-hospital training, with placements at Servier, Sanofi and
+                France’s medicines agency, ANSM.
+              </p>
+            </article>
+            <article className={styles.qualification}>
+              <span>03</span>
+              <h3>Postgraduate Diploma in Health Law (DESS)</h3>
+              <p>Legal specialisation in the regulation of medicines and healthcare products.</p>
+            </article>
+          </div>
+        </section>
+
+        <section className={styles.career} id="career">
+          <div className={styles.careerIntro}>
+            <div className={styles.backgroundNumber}>
+              18<span>+</span>
+            </div>
+            <div className={styles.careerHeading}>
+              <p className={styles.eyebrow}>Professional experience</p>
+              <h2>
+                18 years in regulatory affairs,
+                <br />
+                <em>on the industry side.</em>
+              </h2>
+              <p>
+                From specialist residency to senior regulatory roles, my experience spans
+                medicines, biological products and medical devices.
+              </p>
+            </div>
+            <div className={styles.regions}>
+              <span>Markets supported</span>
+              <strong>
+                France <i>·</i> Europe <i>·</i>
+                <br />
+                United States <i>·</i> Asia
+              </strong>
+            </div>
           </div>
 
-          <div className={styles.sectionContent}>
-            <h2>
-              Scientific expertise,
-              <br />
-              <em>legal understanding.</em>
-            </h2>
-
-            <div className={styles.timeline}>
-              <div className={styles.timelineItem}>
-                <span>01</span>
+          <div className={styles.experienceGroups}>
+            <div className={styles.experienceGroup}>
+              <p className={styles.eyebrow}>Industrial pharmacy residency</p>
+              <article className={styles.careerEntry}>
                 <div>
-                  <h3>Doctor of Pharmacy</h3>
-                  <p>Pharmaceutical sciences and healthcare</p>
+                  <h3>Laboratoires Servier</h3>
+                  <p>Industrial pharmacy residency placement</p>
                 </div>
-              </div>
-
-              <div className={styles.timelineItem}>
-                <span>02</span>
+              </article>
+              <article className={styles.careerEntry}>
                 <div>
-                  <h3>Residency in Industrial Pharmacy</h3>
-                  <p>Industry-focused pharmaceutical training</p>
+                  <h3>Sanofi</h3>
+                  <p>Industrial pharmacy residency placement</p>
                 </div>
-              </div>
-
-              <div className={styles.timelineItem}>
-                <span>03</span>
+              </article>
+              <article className={styles.careerEntry}>
                 <div>
-                  <h3>Postgraduate Diploma in Health Law</h3>
-                  <p>Legal and regulatory framework of healthcare</p>
+                  <h3>ANSM</h3>
+                  <p>
+                    Residency placement at the French National Agency for Medicines and Health
+                    Products Safety
+                  </p>
                 </div>
-              </div>
+              </article>
+            </div>
+
+            <div className={styles.experienceGroup}>
+              <p className={styles.eyebrow}>Industry</p>
+              <article className={styles.careerEntry}>
+                <div>
+                  <h3>Macopharma</h3>
+                  <p>Regulatory Affairs Pharmacist · Fixed-term contract</p>
+                </div>
+                <span>6 months</span>
+              </article>
+              <article className={styles.careerEntry}>
+                <div>
+                  <h3>LFB</h3>
+                  <p>Regulatory Affairs Pharmacist</p>
+                </div>
+                <span>3.5 years</span>
+              </article>
+              <article className={styles.careerEntry}>
+                <div>
+                  <h3>Delpharm</h3>
+                  <p>Regulatory Affairs Associate</p>
+                </div>
+                <span>18 months</span>
+              </article>
+              <article className={styles.careerEntry}>
+                <div>
+                  <h3>SERB</h3>
+                  <p>Interim Responsible Pharmacist / Senior Regulatory Affairs Associate</p>
+                </div>
+                <span>5 years 9 months</span>
+              </article>
+              <article className={styles.careerEntry}>
+                <div>
+                  <h3>Genefit</h3>
+                </div>
+                <span>1.5 years</span>
+              </article>
+              <article className={styles.careerEntry}>
+                <div>
+                  <h3>Diagast</h3>
+                </div>
+                <span>5.5 years</span>
+              </article>
             </div>
           </div>
         </section>
 
-        {/* CAREER */}
-        <section
-          id="career"
-          className={styles.sectionAlt}
-        >
-          <div className={styles.sectionLabel}>
-            <span>04</span>
-            <span>Career</span>
-          </div>
-
-          <div className={styles.sectionContent}>
+        <section className={styles.contact} id="contact">
+          <div>
+            <p className={styles.eyebrow}>Have a project to move forward?</p>
             <h2>
-              18 years of
+              Let’s start
               <br />
-              <em>regulatory experience.</em>
+              <em>a conversation.</em>
             </h2>
-
+          </div>
+          <div className={styles.contactAction}>
             <p>
-              Experience spanning pharmaceutical products, biologics, medical
-              devices and in vitro diagnostics, with exposure to regulatory
-              environments in Europe, the United States and Asia.
+              Tell me about your objectives, timelines and the regulatory context for your
+              product.
             </p>
-
-            <div className={styles.careerHighlight}>
-              <strong>18+</strong>
-              <span>years of industry experience</span>
-            </div>
-          </div>
-        </section>
-
-        {/* CONTACT */}
-        <section
-          id="contact"
-          className={styles.contact}
-        >
-          <div className={styles.contactInner}>
-            <p className={styles.eyebrow}>
-              <span />
-              Start a conversation
-            </p>
-
-            <h2>
-              Have a regulatory
-              <br />
-              <em>question?</em>
-            </h2>
-
-            <p>
-              Whether you are preparing a market entry, developing a new
-              product or navigating a regulatory challenge, let’s discuss how
-              I can help.
-            </p>
-
-            <a
-              className={styles.primaryButton}
-              href="mailto:contact@celinebouriez.com"
-            >
-              Get in touch <span aria-hidden="true">↗</span>
+            <a href="mailto:celinebouriez@gmail.com">
+              Email Céline <span aria-hidden="true">↗</span>
             </a>
           </div>
         </section>
-
       </main>
 
       <footer className={styles.footer}>
-        <span>© {new Date().getFullYear()} Céline Bouriez</span>
-        <span>Regulatory Affairs Consulting</span>
+        <a className={styles.brand} href="#home">
+          <span className={styles.brandMark}>CB</span>
+          <span className={styles.brandName}>Regulatory Affairs</span>
+        </a>
+        <span>Independent healthcare regulatory affairs consultant</span>
+        <a href="#home">Back to top ↑</a>
       </footer>
     </>
   )
