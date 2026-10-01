@@ -2,7 +2,7 @@
 import Head from 'next/head'
 import styles from '../styles/home.module.css'
 
-const BASE_PATH = '/celineexpertev3'
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '/celineexpertev3'
 
 function Home() {
   return (
