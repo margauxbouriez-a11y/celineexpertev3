@@ -94,7 +94,7 @@ function Home() {
 
                 <img
                   className={styles.heroImage}
-                  src={`${BASE_PATH}/celine-bouriez.png`}
+                  src="/celineexpertev3/celine-bouriez.png"
                   alt="Céline Bouriez, healthcare regulatory affairs consultant"
                 />
 
@@ -135,7 +135,7 @@ function Home() {
 
             <figure className={styles.productFigure}>
               <img
-                src={`${BASE_PATH}/medicine-tablets.jpg`}
+                src="/celineexpertev3/medicine-tablets.jpg"
                 alt="Medicinal tablets and capsules"
               />
               <figcaption>
@@ -145,7 +145,7 @@ function Home() {
 
             <figure className={styles.productFigure}>
               <img
-                src={`${BASE_PATH}/pharmaceutical-research.jpg`}
+                src="/celineexpertev3/pharmaceutical-research.jpg"
                 alt="Medical device product development"
               />
               <figcaption>
@@ -155,7 +155,7 @@ function Home() {
 
             <figure className={styles.productFigure}>
               <img
-                src={`${BASE_PATH}/healthcare-products.jpg`}
+                src="/celineexpertev3/healthcare-products.jpg"
                 alt="Healthcare products"
               />
               <figcaption>
