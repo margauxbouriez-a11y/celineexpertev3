@@ -1,379 +1,404 @@
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import styles from '../styles/home.module.css'
+import content, { EMAIL } from '../content'
 
-function Home() {
+const BASE = '/celineexpertev3'
+const SITE_URL = 'https://margauxbouriez-a11y.github.io/celineexpertev3/'
+const pad = (n) => String(n + 1).padStart(2, '0')
+
+function TwoLine({ lines }) {
+  return (
+    <>
+      {lines[0]}
+      <br />
+      <em>{lines[1]}</em>
+    </>
+  )
+}
+
+function Brand() {
+  return (
+    <a className={styles.brand} href="#home" aria-label="Céline Bouriez">
+      <span className={styles.brandMark}>CB</span>
+      <span className={styles.brandText}>
+        <strong>Céline Bouriez</strong>
+        <span>Regulatory Affairs · PharmD</span>
+      </span>
+    </a>
+  )
+}
+
+export default function Home() {
+  const [lang, setLang] = useState('fr')
+  const [copied, setCopied] = useState(false)
+  const t = content[lang]
+
+  useEffect(() => {
+    let initial = null
+    try {
+      initial = window.localStorage.getItem('lang')
+    } catch (e) {}
+    if (initial !== 'fr' && initial !== 'en') {
+      initial = (navigator.language || 'fr').toLowerCase().startsWith('fr') ? 'fr' : 'en'
+    }
+    setLang(initial)
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.lang = lang
+  }, [lang])
+
+  const switchLang = (next) => {
+    setLang(next)
+    try {
+      window.localStorage.setItem('lang', next)
+    } catch (e) {}
+  }
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2200)
+    } catch (e) {}
+  }
+
+  const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(t.contact.subject)}`
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: 'Céline Bouriez — Regulatory Affairs Consulting',
+    url: SITE_URL,
+    email: EMAIL,
+    image: `${SITE_URL}celine-bouriez.png`,
+    areaServed: ['France', 'Europe', 'United States', 'Asia'],
+    founder: {
+      '@type': 'Person',
+      name: 'Céline Bouriez',
+      jobTitle: 'Regulatory Affairs Consultant, PharmD',
+      knowsAbout: [
+        'Regulatory affairs',
+        'Marketing authorisation',
+        'CTD dossiers',
+        'Medical devices',
+        'In vitro diagnostics',
+        'Biologics',
+      ],
+    },
+  }
+
   return (
     <>
       <Head>
-        <title>Céline Bouriez | Healthcare Regulatory Affairs</title>
-        <meta
-          name="description"
-          content="Regulatory affairs consulting for the market entry of medicines, medical devices and IVDs in France and internationally."
-        />
-        <meta name="theme-color" content="#142640" />
+        <title>{t.meta.title}</title>
+        <meta name="description" content={t.meta.description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#0d1c31" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={SITE_URL} />
+        <meta property="og:title" content={t.meta.title} />
+        <meta property="og:description" content={t.meta.description} />
+        <meta property="og:image" content={`${SITE_URL}celine-bouriez.png`} />
+        <meta name="twitter:card" content="summary" />
+        <link rel="canonical" href={SITE_URL} />
+        <link rel="icon" href={`${BASE}/favicon.svg`} type="image/svg+xml" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </Head>
 
+      <a className={styles.skip} href="#main">
+        {lang === 'fr' ? 'Aller au contenu' : 'Skip to content'}
+      </a>
+
       <header className={styles.header}>
-        <a className={styles.brand} href="#home" aria-label="Céline Bouriez, home">
-          <span className={styles.brandMark}>CB</span>
-          <span className={styles.brandName}>Regulatory Affairs</span>
-        </a>
-        <nav className={styles.nav} aria-label="Main navigation">
-          <a href="#expertise">Expertise</a>
-          <a href="#approach">Approach</a>
-          <a href="#education">Education</a>
-          <a href="#career">Career</a>
-        </nav>
-        <a className={styles.headerCta} href="#contact">
-          Get in touch <span aria-hidden="true">↗</span>
-        </a>
+        <div className={styles.headerInner}>
+          <Brand />
+          <nav className={styles.nav} aria-label="Navigation">
+            <a href="#expertise">{t.nav.expertise}</a>
+            <a href="#clients">{t.nav.clients}</a>
+            <a href="#missions">{t.nav.missions}</a>
+            <a href="#career">{t.nav.career}</a>
+          </nav>
+          <div className={styles.headerActions}>
+            <div className={styles.langSwitch} role="group" aria-label={t.nav.langLabel}>
+              {['fr', 'en'].map((l) => (
+                <button
+                  key={l}
+                  type="button"
+                  aria-pressed={lang === l}
+                  className={lang === l ? styles.langActive : undefined}
+                  onClick={() => switchLang(l)}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+            <a className={styles.headerCta} href="#contact">
+              {t.nav.cta}
+            </a>
+          </div>
+        </div>
       </header>
 
-      <main id="home">
-        <section className={styles.hero}>
+      <main id="main">
+        <section className={styles.hero} id="home">
           <div className={styles.heroInner}>
             <div className={styles.heroCopy}>
               <p className={styles.eyebrow}>
-                <span /> Independent regulatory affairs consulting
+                <span className={styles.rule} /> {t.hero.eyebrow}
               </p>
               <h1>
-                Regulatory clarity.
-                <br />
-                <em>Confident market access.</em>
+                <TwoLine lines={t.hero.title} />
               </h1>
-              <p className={styles.lede}>
-                From first strategy to approval, I help teams bring medicines, biologics,
-                medical devices and IVDs to market with clear advice and rigorous regulatory
-                submissions.
-              </p>
-              <div className={styles.credentials}>
-                <span>Doctor of Pharmacy</span>
-                <span>Residency in Industrial Pharmacy</span>
-                <span>Postgraduate Diploma in Health Law</span>
-              </div>
+              <p className={styles.lede}>{t.hero.lede}</p>
+              <ul className={styles.credentials}>
+                {t.hero.credentials.map((c) => (
+                  <li key={c}>{c}</li>
+                ))}
+              </ul>
               <div className={styles.heroActions}>
                 <a className={styles.primaryButton} href="#contact">
-                  Let’s discuss your project <span aria-hidden="true">↗</span>
+                  {t.hero.primary} <span aria-hidden="true">→</span>
                 </a>
                 <a className={styles.textLink} href="#expertise">
-                  Explore my expertise <span aria-hidden="true">↓</span>
+                  {t.hero.secondary} <span aria-hidden="true">↓</span>
                 </a>
               </div>
-              <p className={styles.experienceNote}>
-                18 years in industry across medicines, biologics and medical devices
-              </p>
+              <p className={styles.formats}>{t.hero.formats}</p>
             </div>
 
             <div className={styles.heroVisual}>
-              <div className={styles.heroPortraitCard}>
-                <span className={styles.portraitLabel}>Céline Bouriez</span>
+              <figure className={styles.portrait}>
+                <span className={styles.portraitLabel}>{t.hero.portraitLabel}</span>
                 <img
-                  className={styles.heroImage}
-                  src="/celineexpertev3/celine-bouriez.png"
-                  alt="Céline Bouriez, healthcare regulatory affairs consultant"
-                  onError={(event) => {
-                    event.currentTarget.style.display = 'none'
-                  }}
+                  src={`${BASE}/celine-bouriez.png`}
+                  alt={lang === 'fr' ? 'Portrait de Céline Bouriez' : 'Portrait of Céline Bouriez'}
+                  width="296"
+                  height="296"
                 />
-                <div className={styles.portraitMeta}>
+                <figcaption>
                   <strong>18+</strong>
-                  <span>years in regulatory affairs</span>
-                </div>
-              </div>
+                  <span>{t.hero.portraitStat}</span>
+                </figcaption>
+              </figure>
             </div>
           </div>
         </section>
 
-        <section className={styles.productGallery} aria-label="Areas of regulatory expertise">
-          <div className={styles.galleryHeading}>
-            <p className={styles.eyebrow}>Cross-functional regulatory expertise</p>
-            <h2>
-              A clear route to market
-              <br />
-              <em>for every product.</em>
-            </h2>
-            <p className={styles.galleryIntro}>
-              Regulatory strategy and submission support for medicines, biologics, medical
-              devices and in vitro diagnostics, from development through market authorisation.
-            </p>
-          </div>
-          <div className={styles.productGrid}>
-            <figure className={styles.productFigure}>
-              <img src="/celineexpertev3/medicine-tablets.jpg" alt="Medicinal tablets and capsules" />
-              <figcaption>
-                <strong>Medicines &amp; biologics</strong>
-              </figcaption>
-            </figure>
-            <figure className={styles.productFigure}>
-              <img src="/celineexpertev3/pharmaceutical-research.jpg" alt="Medical device product development" />
-              <figcaption>
-                <strong>Medical devices</strong>
-              </figcaption>
-            </figure>
-            <figure className={styles.productFigure}>
-              <img
-                src="/celineexpertev3/healthcare-products.jpg"
-                alt="Healthcare research in a diagnostic laboratory"
-              />
-              <figcaption>
-                <strong>In vitro diagnostics</strong>
-              </figcaption>
-            </figure>
-          </div>
+        <section className={styles.figures} aria-label={lang === 'fr' ? 'Chiffres clés' : 'Key figures'}>
+          {t.figures.map((f) => (
+            <div key={f.label} className={styles.figure}>
+              <strong>{f.value}</strong>
+              <span>{f.label}</span>
+            </div>
+          ))}
         </section>
 
-        <section className={styles.expertise} id="expertise">
-          <div className={styles.sectionHeading}>
-            <p className={styles.eyebrow}>Support tailored to your objectives</p>
-            <h2>
-              The right regulatory strategy,
-              <br />
-              <em>at the right time.</em>
-            </h2>
-          </div>
-          <div className={styles.serviceList}>
-            <article className={styles.service}>
-              <span className={styles.serviceNumber}>01</span>
-              <div>
-                <h3>Market entry</h3>
-                <p>
-                  A clear route to market, the right regulatory pathway and focused support
-                  through approval.
-                </p>
-              </div>
-              <span className={styles.serviceArrow} aria-hidden="true">↗</span>
-            </article>
-            <article className={styles.service}>
-              <span className={styles.serviceNumber}>02</span>
-              <div>
-                <h3>Regulatory submissions &amp; compliance</h3>
-                <p>
-                  Submission-ready dossiers built on coherent evidence, rigorous review and a
-                  clear regulatory narrative.
-                </p>
-              </div>
-              <span className={styles.serviceArrow} aria-hidden="true">↗</span>
-            </article>
-            <article className={styles.service}>
-              <span className={styles.serviceNumber}>03</span>
-              <div>
-                <h3>Regulatory affairs support</h3>
-                <p>
-                  Experienced, hands-on support that helps teams resolve questions and keep
-                  critical milestones on track.
-                </p>
-              </div>
-              <span className={styles.serviceArrow} aria-hidden="true">↗</span>
-            </article>
-          </div>
-        </section>
-
-        <section className={styles.approach} id="approach">
-          <div className={styles.approachIntro}>
-            <p className={styles.eyebrow}>A clear process, a direct conversation</p>
-            <h2>
-              Move forward
-              <br />
-              <em>with clarity.</em>
-            </h2>
-            <p>
-              Every product, market and team has its own needs. I tailor my support to your
-              objectives, turning regulatory complexity into clear, practical decisions.
-            </p>
-          </div>
-          <div className={styles.steps}>
-            <div className={styles.step}>
-              <span>01</span>
-              <div>
-                <h3>Understand</h3>
-                <p>Clarify the product, objectives and timeline to establish a shared assessment.</p>
-              </div>
+        <section className={styles.section} id="expertise">
+          <div className={styles.split}>
+            <div className={styles.heading}>
+              <p className={styles.eyebrow}>{t.expertise.eyebrow}</p>
+              <h2>
+                <TwoLine lines={t.expertise.title} />
+              </h2>
+              <p className={styles.intro}>{t.expertise.intro}</p>
             </div>
-            <div className={styles.step}>
-              <span>02</span>
-              <div>
-                <h3>Plan</h3>
-                <p>
-                  Build a regulatory roadmap aligned with requirements, priorities and available
-                  resources.
-                </p>
-              </div>
-            </div>
-            <div className={styles.step}>
-              <span>03</span>
-              <div>
-                <h3>Deliver</h3>
-                <p>Prepare robust submissions and support their progress through to a decision.</p>
-              </div>
+            <div className={styles.serviceGrid}>
+              {t.expertise.items.map((s, i) => (
+                <article key={s.title} className={styles.service}>
+                  <span className={styles.num}>{pad(i)}</span>
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className={styles.qualifications} id="education">
-          <div className={styles.sectionHeading}>
-            <p className={styles.eyebrow}>Education &amp; specialist training</p>
-            <h2>
-              A scientific and legal
-              <br />
-              <em>foundation.</em>
+        <section className={`${styles.section} ${styles.tinted}`} aria-labelledby="domains-title">
+          <div className={styles.heading}>
+            <p className={styles.eyebrow}>{t.domains.eyebrow}</p>
+            <h2 id="domains-title">
+              <TwoLine lines={t.domains.title} />
             </h2>
+            <p className={styles.intro}>{t.domains.intro}</p>
           </div>
-          <div className={styles.qualificationList}>
-            <article className={styles.qualification}>
-              <span>01</span>
-              <h3>Doctor of Pharmacy</h3>
-              <p>A rigorous scientific foundation in medicines and healthcare.</p>
-            </article>
-            <article className={styles.qualification}>
-              <span>02</span>
-              <h3>
-                Hospital Residency in Pharmacy
-                <br />
-                Industrial Pharmacy
-              </h3>
-              <p>
-                Specialist university-hospital training, with placements at Servier, Sanofi and
-                France’s medicines agency, ANSM.
-              </p>
-            </article>
-            <article className={styles.qualification}>
-              <span>03</span>
-              <h3>Postgraduate Diploma in Health Law (DESS)</h3>
-              <p>Legal specialisation in the regulation of medicines and healthcare products.</p>
-            </article>
+          <div className={styles.domainGrid}>
+            {t.domains.items.map((d) => (
+              <figure key={d.img} className={styles.domain}>
+                <img src={`${BASE}/${d.img}`} alt={d.alt} loading="lazy" />
+                <figcaption>{d.label}</figcaption>
+              </figure>
+            ))}
           </div>
         </section>
 
-        <section className={styles.career} id="career">
+        <section className={styles.section} id="clients">
+          <div className={styles.heading}>
+            <p className={styles.eyebrow}>{t.clients.eyebrow}</p>
+            <h2>
+              <TwoLine lines={t.clients.title} />
+            </h2>
+          </div>
+          <div className={styles.clientGrid}>
+            {t.clients.items.map((c) => (
+              <article key={c.title} className={styles.client}>
+                <h3>{c.title}</h3>
+                <p>{c.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className={`${styles.section} ${styles.dark}`} id="missions">
+          <div className={styles.heading}>
+            <p className={styles.eyebrow}>{t.missions.eyebrow}</p>
+            <h2>
+              <TwoLine lines={t.missions.title} />
+            </h2>
+          </div>
+          <div className={styles.missionGrid}>
+            {t.missions.items.map((m) => (
+              <article key={m.title} className={styles.mission}>
+                <span className={styles.tag}>{m.tag}</span>
+                <h3>{m.title}</h3>
+                <p>{m.text}</p>
+              </article>
+            ))}
+          </div>
+          <a className={styles.primaryButton} href="#contact">
+            {t.hero.primary} <span aria-hidden="true">→</span>
+          </a>
+        </section>
+
+        <section className={styles.section} aria-labelledby="strengths-title">
+          <div className={styles.split}>
+            <div className={styles.heading}>
+              <p className={styles.eyebrow}>{t.strengths.eyebrow}</p>
+              <h2 id="strengths-title">
+                <TwoLine lines={t.strengths.title} />
+              </h2>
+            </div>
+            <div className={styles.strengthGrid}>
+              {t.strengths.items.map((s) => (
+                <article key={s.title} className={styles.strength}>
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className={`${styles.section} ${styles.tinted}`} aria-labelledby="approach-title">
+          <div className={styles.split}>
+            <div className={styles.heading}>
+              <p className={styles.eyebrow}>{t.approach.eyebrow}</p>
+              <h2 id="approach-title">
+                <TwoLine lines={t.approach.title} />
+              </h2>
+              <p className={styles.intro}>{t.approach.intro}</p>
+            </div>
+            <ol className={styles.steps}>
+              {t.approach.steps.map((s, i) => (
+                <li key={s.title} className={styles.step}>
+                  <span className={styles.num}>{pad(i)}</span>
+                  <div>
+                    <h3>{s.title}</h3>
+                    <p>{s.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className={styles.section} id="career">
           <div className={styles.careerIntro}>
-            <div className={styles.backgroundNumber}>
+            <div className={styles.bigNumber}>
               18<span>+</span>
             </div>
-            <div className={styles.careerHeading}>
-              <p className={styles.eyebrow}>Professional experience</p>
+            <div className={styles.heading}>
+              <p className={styles.eyebrow}>{t.career.eyebrow}</p>
               <h2>
-                18 years in regulatory affairs,
-                <br />
-                <em>on the industry side.</em>
+                <TwoLine lines={t.career.title} />
               </h2>
-              <p>
-                From specialist residency to senior regulatory roles, my experience spans
-                medicines, biological products and medical devices.
-              </p>
+              <p className={styles.intro}>{t.career.intro}</p>
             </div>
             <div className={styles.regions}>
-              <span>Markets supported</span>
-              <strong>
-                France <i>·</i> Europe <i>·</i>
-                <br />
-                United States <i>·</i> Asia
-              </strong>
+              <span>{t.career.marketsLabel}</span>
+              <strong>{t.career.markets.join(' · ')}</strong>
             </div>
           </div>
 
           <div className={styles.experienceGroups}>
-            <div className={styles.experienceGroup}>
-              <p className={styles.eyebrow}>Industrial pharmacy residency</p>
-              <article className={styles.careerEntry}>
-                <div>
-                  <h3>Laboratoires Servier</h3>
-                  <p>Industrial pharmacy residency placement</p>
-                </div>
-              </article>
-              <article className={styles.careerEntry}>
-                <div>
-                  <h3>Sanofi</h3>
-                  <p>Industrial pharmacy residency placement</p>
-                </div>
-              </article>
-              <article className={styles.careerEntry}>
-                <div>
-                  <h3>ANSM</h3>
-                  <p>
-                    Residency placement at the French National Agency for Medicines and Health
-                    Products Safety
-                  </p>
-                </div>
-              </article>
+            <div>
+              <p className={styles.groupLabel}>{t.career.industryLabel}</p>
+              {t.career.industry.map((e) => (
+                <article key={e.name} className={styles.careerEntry}>
+                  <div>
+                    <h3>{e.name}</h3>
+                    <p>{e.role}</p>
+                  </div>
+                  <span>{e.duration}</span>
+                </article>
+              ))}
             </div>
-
-            <div className={styles.experienceGroup}>
-              <p className={styles.eyebrow}>Industry</p>
-              <article className={styles.careerEntry}>
-                <div>
-                  <h3>Macopharma</h3>
-                  <p>Regulatory Affairs Pharmacist · Fixed-term contract</p>
-                </div>
-                <span>6 months</span>
-              </article>
-              <article className={styles.careerEntry}>
-                <div>
-                  <h3>LFB</h3>
-                  <p>Regulatory Affairs Pharmacist</p>
-                </div>
-                <span>3.5 years</span>
-              </article>
-              <article className={styles.careerEntry}>
-                <div>
-                  <h3>Delpharm</h3>
-                  <p>Regulatory Affairs Associate</p>
-                </div>
-                <span>18 months</span>
-              </article>
-              <article className={styles.careerEntry}>
-                <div>
-                  <h3>SERB</h3>
-                  <p>Interim Responsible Pharmacist / Senior Regulatory Affairs Associate</p>
-                </div>
-                <span>5 years 9 months</span>
-              </article>
-              <article className={styles.careerEntry}>
-                <div>
-                  <h3>Genefit</h3>
-                </div>
-                <span>1.5 years</span>
-              </article>
-              <article className={styles.careerEntry}>
-                <div>
-                  <h3>Diagast</h3>
-                </div>
-                <span>5.5 years</span>
-              </article>
+            <div>
+              <p className={styles.groupLabel}>{t.career.residencyLabel}</p>
+              {t.career.residency.map((e) => (
+                <article key={e.name} className={styles.careerEntry}>
+                  <div>
+                    <h3>{e.name}</h3>
+                    <p>{e.role}</p>
+                  </div>
+                </article>
+              ))}
+              <p className={`${styles.groupLabel} ${styles.groupLabelSpaced}`}>{t.education.eyebrow}</p>
+              {t.education.items.map((e) => (
+                <article key={e.title} className={styles.careerEntry}>
+                  <div>
+                    <h3>{e.title}</h3>
+                    <p>{e.text}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
 
         <section className={styles.contact} id="contact">
-          <div>
-            <p className={styles.eyebrow}>Have a project to move forward?</p>
+          <div className={styles.heading}>
+            <p className={styles.eyebrow}>{t.contact.eyebrow}</p>
             <h2>
-              Let’s start
-              <br />
-              <em>a conversation.</em>
+              <TwoLine lines={t.contact.title} />
             </h2>
           </div>
           <div className={styles.contactAction}>
-            <p>
-              Tell me about your objectives, timelines and the regulatory context for your
-              product.
-            </p>
-            <a href="mailto:celinebouriez@gmail.com">
-              Email Céline <span aria-hidden="true">↗</span>
+            <p>{t.contact.text}</p>
+            <div className={styles.contactButtons}>
+              <a className={styles.primaryButton} href={mailto}>
+                {t.contact.button} <span aria-hidden="true">→</span>
+              </a>
+              <button type="button" className={styles.copyButton} onClick={copyEmail}>
+                {copied ? t.contact.copied : t.contact.copy}
+              </button>
+            </div>
+            <a className={styles.emailLine} href={mailto}>
+              {EMAIL}
             </a>
           </div>
         </section>
       </main>
 
       <footer className={styles.footer}>
-        <a className={styles.brand} href="#home">
-          <span className={styles.brandMark}>CB</span>
-          <span className={styles.brandName}>Regulatory Affairs</span>
-        </a>
-        <span>Independent healthcare regulatory affairs consultant</span>
-        <a href="#home">Back to top ↑</a>
+        <div className={styles.footerInner}>
+          <Brand />
+          <span>{t.footer.tagline}</span>
+          <a href="#home">{t.footer.top}</a>
+        </div>
       </footer>
     </>
   )
 }
-
-export default Home
