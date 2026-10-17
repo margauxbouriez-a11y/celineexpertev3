@@ -32,6 +32,7 @@ function Brand() {
 export default function Home() {
   const [lang, setLang] = useState('fr')
   const [copied, setCopied] = useState(false)
+  const [showBar, setShowBar] = useState(false)
   const t = content[lang]
 
   useEffect(() => {
@@ -48,6 +49,40 @@ export default function Home() {
   useEffect(() => {
     document.documentElement.lang = lang
   }, [lang])
+
+  // Apparition douce des sections au défilement + barre d'action mobile
+  useEffect(() => {
+    const root = document.documentElement
+    const els = Array.from(document.querySelectorAll('[data-reveal]'))
+    let io
+    if ('IntersectionObserver' in window) {
+      root.classList.add('reveal-ready')
+      io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible')
+              io.unobserve(e.target)
+            }
+          })
+        },
+        { rootMargin: '0px 0px -10% 0px' }
+      )
+      els.forEach((el) => io.observe(el))
+    }
+    const contact = document.getElementById('contact')
+    const onScroll = () => {
+      const pastHero = window.scrollY > window.innerHeight * 0.7
+      const atContact = contact && contact.getBoundingClientRect().top < window.innerHeight
+      setShowBar(pastHero && !atContact)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (io) io.disconnect()
+    }
+  }, [])
 
   const switchLang = (next) => {
     setLang(next)
@@ -145,6 +180,9 @@ export default function Home() {
         <section className={styles.hero} id="home">
           <div className={styles.heroInner}>
             <div className={styles.heroCopy}>
+              <a className={styles.badge} href="#contact">
+                <span className={styles.dot} aria-hidden="true" /> {t.hero.badge}
+              </a>
               <p className={styles.eyebrow}>
                 <span className={styles.rule} /> {t.hero.eyebrow}
               </p>
@@ -186,6 +224,15 @@ export default function Home() {
           </div>
         </section>
 
+        <section className={styles.proof} aria-label={t.proof.label}>
+          <span className={styles.proofLabel}>{t.proof.label}</span>
+          <ul className={styles.proofList}>
+            {t.proof.names.map((n) => (
+              <li key={n}>{n}</li>
+            ))}
+          </ul>
+        </section>
+
         <section className={styles.figures} aria-label={lang === 'fr' ? 'Chiffres clés' : 'Key figures'}>
           {t.figures.map((f) => (
             <div key={f.label} className={styles.figure}>
@@ -195,7 +242,27 @@ export default function Home() {
           ))}
         </section>
 
-        <section className={styles.section} id="expertise">
+        <section className={styles.section} aria-labelledby="pains-title" data-reveal>
+          <div className={styles.heading}>
+            <p className={styles.eyebrow}>{t.pains.eyebrow}</p>
+            <h2 id="pains-title">
+              <TwoLine lines={t.pains.title} />
+            </h2>
+          </div>
+          <div className={styles.painGrid}>
+            {t.pains.items.map((p, i) => (
+              <article key={p.problem} className={styles.pain}>
+                <span className={styles.num}>{pad(i)}</span>
+                <h3>{p.problem}</h3>
+                <p>
+                  <span className={styles.arrow} aria-hidden="true">→</span> {p.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className={`${styles.section} ${styles.tinted}`} id="expertise" data-reveal>
           <div className={styles.split}>
             <div className={styles.heading}>
               <p className={styles.eyebrow}>{t.expertise.eyebrow}</p>
@@ -216,25 +283,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={`${styles.section} ${styles.tinted}`} aria-labelledby="domains-title">
-          <div className={styles.heading}>
-            <p className={styles.eyebrow}>{t.domains.eyebrow}</p>
-            <h2 id="domains-title">
-              <TwoLine lines={t.domains.title} />
-            </h2>
-            <p className={styles.intro}>{t.domains.intro}</p>
-          </div>
-          <div className={styles.domainGrid}>
-            {t.domains.items.map((d) => (
-              <figure key={d.img} className={styles.domain}>
-                <img src={`${BASE}/${d.img}`} alt={d.alt} loading="lazy" />
-                <figcaption>{d.label}</figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.section} id="clients">
+        <section className={styles.section} id="clients" data-reveal>
           <div className={styles.heading}>
             <p className={styles.eyebrow}>{t.clients.eyebrow}</p>
             <h2>
@@ -251,7 +300,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={`${styles.section} ${styles.dark}`} id="missions">
+        <section className={`${styles.section} ${styles.dark}`} id="missions" data-reveal>
           <div className={styles.heading}>
             <p className={styles.eyebrow}>{t.missions.eyebrow}</p>
             <h2>
@@ -272,7 +321,7 @@ export default function Home() {
           </a>
         </section>
 
-        <section className={styles.section} aria-labelledby="strengths-title">
+        <section className={styles.section} aria-labelledby="strengths-title" data-reveal>
           <div className={styles.split}>
             <div className={styles.heading}>
               <p className={styles.eyebrow}>{t.strengths.eyebrow}</p>
@@ -291,7 +340,17 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={`${styles.section} ${styles.tinted}`} aria-labelledby="approach-title">
+        <section className={styles.banner} data-reveal>
+          <div>
+            <h2>{t.banner.title}</h2>
+            <p>{t.banner.text}</p>
+          </div>
+          <a className={styles.primaryButton} href="#contact">
+            {t.banner.button} <span aria-hidden="true">→</span>
+          </a>
+        </section>
+
+        <section className={`${styles.section} ${styles.tinted}`} aria-labelledby="approach-title" data-reveal>
           <div className={styles.split}>
             <div className={styles.heading}>
               <p className={styles.eyebrow}>{t.approach.eyebrow}</p>
@@ -314,7 +373,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.section} id="career">
+        <section className={styles.section} id="career" data-reveal>
           <div className={styles.careerIntro}>
             <div className={styles.bigNumber}>
               18<span>+</span>
@@ -385,12 +444,21 @@ export default function Home() {
                 {copied ? t.contact.copied : t.contact.copy}
               </button>
             </div>
-            <a className={styles.emailLine} href={mailto}>
-              {EMAIL}
-            </a>
+            <p className={styles.contactNote}>
+              <span className={styles.dot} aria-hidden="true" /> {t.contact.note} · <a href={mailto}>{EMAIL}</a>
+            </p>
           </div>
         </section>
       </main>
+
+      <a
+        className={`${styles.mobileBar} ${showBar ? styles.mobileBarVisible : ''}`}
+        href="#contact"
+        aria-hidden={!showBar}
+        tabIndex={showBar ? 0 : -1}
+      >
+        {t.mobileCta} <span aria-hidden="true">→</span>
+      </a>
 
       <footer className={styles.footer}>
         <div className={styles.footerInner}>

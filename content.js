@@ -19,17 +19,50 @@ const content = {
       langLabel: 'Langue',
     },
     hero: {
-      eyebrow: 'Pharmacien · Consultante indépendante en affaires réglementaires',
-      title: ['Mettre vos produits de santé', 'sur le marché, sans détour.'],
+      badge: 'Disponible pour de nouvelles missions',
+      eyebrow: 'Pharmacien · Consultante en affaires réglementaires',
+      title: ['Votre AMM,', 'sans faux pas.'],
       lede:
-        "De la stratégie réglementaire à l'obtention de l'AMM, puis tout au long du cycle de vie, j'accompagne laboratoires, biotechs, façonniers et fabricants de dispositifs médicaux avec des dossiers solides et des décisions claires.",
+        "18 ans d'affaires réglementaires en industrie. Je prends en main vos dossiers, de la stratégie à l'autorisation, pour que vos produits arrivent sur le marché à temps.",
       credentials: ['Docteur en pharmacie', 'Internat — pharmacie industrielle', 'DESS Droit de la santé'],
       primary: 'Proposer une mission',
-      secondary: 'Voir mon expertise',
-      formats: 'Mission au forfait · Temps partagé · Intérim',
+      secondary: 'Voir ce que je fais',
+      formats: 'Mission au forfait · Temps partagé · Audit · Intérim',
       portraitLabel: 'Céline Bouriez',
       portraitStat: "ans en affaires réglementaires",
     },
+    proof: {
+      label: 'Une expérience forgée chez',
+      names: ['Sanofi', 'Servier', 'ANSM', 'LFB', 'SERB', 'Delpharm', 'Macopharma', 'Diagast', 'Genefit'],
+    },
+    pains: {
+      eyebrow: 'Vous vous reconnaissez ?',
+      title: ['Quand le réglementaire bloque,', 'tout le projet s’arrête.'],
+      items: [
+        {
+          problem: 'Un dépôt approche et votre équipe est saturée.',
+          answer: 'Je rejoins le projet et prends le dossier en charge, opérationnelle tout de suite.',
+        },
+        {
+          problem: "Les questions de l'agence s'accumulent.",
+          answer: "Je structure les réponses et défends votre dossier jusqu'à la décision.",
+        },
+        {
+          problem: 'Votre pharmacien responsable doit être remplacé.',
+          answer: "J'assure l'intérim et la continuité de vos obligations légales.",
+        },
+        {
+          problem: 'Premier produit, et pas encore d’équipe réglementaire.',
+          answer: 'Je construis la stratégie et les premiers dossiers, sans que vous ayez à recruter.',
+        },
+      ],
+    },
+    banner: {
+      title: 'Un dossier en cours ou un dépôt à venir ?',
+      text: 'Un premier échange suffit pour savoir comment je peux vous aider.',
+      button: 'Parlons-en',
+    },
+    mobileCta: 'Proposer une mission',
     figures: [
       { value: '18+', label: "années d'expérience en industrie" },
       { value: '9', label: 'laboratoires, industriels et autorité' },
@@ -201,8 +234,9 @@ const content = {
     },
     contact: {
       eyebrow: 'Un projet, un besoin de renfort ?',
-      title: ['Parlons de', 'votre mission.'],
+      title: ['Votre prochain dossier', 'commence ici.'],
       text: 'Décrivez-moi votre produit, vos objectifs et vos échéances : je vous réponds avec une première analyse et une proposition d’intervention.',
+      note: 'Premier échange sans engagement',
       button: 'Écrire à Céline',
       subject: 'Proposition de mission — affaires réglementaires',
       copy: "Copier l'adresse",
@@ -229,17 +263,50 @@ const content = {
       langLabel: 'Language',
     },
     hero: {
-      eyebrow: 'PharmD · Independent regulatory affairs consultant',
-      title: ['Bringing your health products', 'to market, without detours.'],
+      badge: 'Available for new assignments',
+      eyebrow: 'PharmD · Regulatory affairs consultant',
+      title: ['Your marketing authorisation,', 'without missteps.'],
       lede:
-        'From regulatory strategy to marketing authorisation, and throughout the product lifecycle, I support pharmaceutical companies, biotechs, CDMOs and device manufacturers with robust dossiers and clear decisions.',
+        '18 years of regulatory affairs in industry. I take charge of your dossiers, from strategy to approval, so your products reach the market on time.',
       credentials: ['Doctor of Pharmacy', 'Residency in Industrial Pharmacy', 'Postgraduate Diploma in Health Law'],
       primary: 'Propose an assignment',
-      secondary: 'Explore my expertise',
-      formats: 'Fixed-scope projects · Part-time · Interim',
+      secondary: 'See what I do',
+      formats: 'Fixed-scope · Part-time · Audit · Interim',
       portraitLabel: 'Céline Bouriez',
       portraitStat: 'years in regulatory affairs',
     },
+    proof: {
+      label: 'Experience built at',
+      names: ['Sanofi', 'Servier', 'ANSM', 'LFB', 'SERB', 'Delpharm', 'Macopharma', 'Diagast', 'Genefit'],
+    },
+    pains: {
+      eyebrow: 'Sound familiar?',
+      title: ['When regulatory stalls,', 'the whole project stops.'],
+      items: [
+        {
+          problem: 'A submission is due and your team is stretched.',
+          answer: 'I join the project and take ownership of the dossier, effective immediately.',
+        },
+        {
+          problem: 'Agency questions keep piling up.',
+          answer: 'I structure the responses and defend your dossier through to decision.',
+        },
+        {
+          problem: 'Your Responsible Pharmacist needs cover.',
+          answer: 'I step in as interim and keep your legal obligations covered.',
+        },
+        {
+          problem: 'First product, and no regulatory team yet.',
+          answer: 'I build the strategy and first dossiers, without you having to hire.',
+        },
+      ],
+    },
+    banner: {
+      title: 'A dossier in progress or a submission coming up?',
+      text: 'One first conversation is enough to see how I can help.',
+      button: 'Let’s talk',
+    },
+    mobileCta: 'Propose an assignment',
     figures: [
       { value: '18+', label: 'years of industry experience' },
       { value: '9', label: 'pharma companies, manufacturers and agency' },
@@ -407,8 +474,9 @@ const content = {
     },
     contact: {
       eyebrow: 'A project, or need extra capacity?',
-      title: ['Let’s talk about', 'your assignment.'],
+      title: ['Your next dossier', 'starts here.'],
       text: 'Tell me about your product, objectives and deadlines: I will reply with an initial view and a proposed engagement.',
+      note: 'First conversation, no commitment',
       button: 'Email Céline',
       subject: 'Assignment proposal — regulatory affairs',
       copy: 'Copy address',

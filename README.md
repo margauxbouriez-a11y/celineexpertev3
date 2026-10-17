@@ -20,16 +20,20 @@ navigateur est choisie automatiquement).
 
 | Section | Rôle |
 |---|---|
-| Accueil | Positionnement, diplômes, bouton « Proposer une mission » |
+| Accueil | Accroche « Votre AMM, sans faux pas. », badge « Disponible pour de nouvelles missions », bouton « Proposer une mission » |
+| Références | Entreprises du parcours : Sanofi, Servier, ANSM, LFB, SERB… |
 | Chiffres clés | 18+ ans, 9 entreprises/autorité, 3 familles de produits, 4 zones |
+| Vous vous reconnaissez ? | 4 situations du client → la réponse apportée |
 | Expertise | 6 services : stratégie, dossiers d'AMM, cycle de vie, biologiques, DM/DIV, pharmacien responsable |
-| Domaines | Médicaments & biologiques, dispositifs médicaux, diagnostics in vitro |
 | Pour qui | 5 types d'entreprises clientes |
 | Missions | 4 formats : forfait, temps partagé, audit, intérim |
 | Pourquoi moi | Atouts différenciants (industrie + ANSM, science + droit…) |
+| Bandeau d'appel | « Un dossier en cours ou un dépôt à venir ? » |
 | Méthode | Comprendre → Planifier → Livrer |
 | Parcours | Expériences en industrie, internat, formation |
-| Contact | E-mail pré-rempli + bouton « copier l'adresse » |
+| Contact | E-mail pré-rempli, « copier l'adresse », « Premier échange sans engagement » |
+
+Sur téléphone, un bouton « Proposer une mission » reste accessible en bas de l'écran pendant la lecture.
 
 ## Modifier un texte
 
@@ -45,6 +49,7 @@ le site se met à jour tout seul en 1 à 2 minutes.
 
 - Les intitulés de poste chez **Genefit** et **Diagast** (non précisés à l'origine, indiqués « Affaires réglementaires »).
 - La liste des services et des formats d'intervention (section Expertise / Missions) correspond bien à ce qu'elle souhaite proposer.
+- La mention « Premier échange sans engagement » et le badge « Disponible pour de nouvelles missions » (à retirer dans `content.js` si ce n'est plus le cas).
 - Ajouter si souhaité un lien LinkedIn ou un numéro de téléphone dans la section Contact.
 
 ## Technique
