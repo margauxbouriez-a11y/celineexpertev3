@@ -220,11 +220,14 @@ export default function Home() {
               <h3>{t.services.featured.title}</h3>
               <p>{t.services.featured.text}</p>
             </div>
-            <ul className={styles.featuredPoints}>
-              {t.services.featured.points.map((pt) => (
-                <li key={pt}>{pt}</li>
+            <div className={styles.outcomes}>
+              {t.services.featured.outcomes.map((o) => (
+                <div key={o.title} className={styles.outcome}>
+                  <strong>{o.title}</strong>
+                  <span>{o.text}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </article>
           <div className={styles.missionGrid}>
             {t.services.items.map((m) => (

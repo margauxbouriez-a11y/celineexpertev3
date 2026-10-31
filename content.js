@@ -49,13 +49,10 @@ const content = {
       tag: 'Core offer',
       title: 'Regulatory set-up for new products',
       text: 'For start-ups, biotechs and manufacturers launching a new product with no regulatory team in place. I build your regulatory function from the ground up, so you can file with confidence without recruiting first.',
-      points: [
-        'Product qualification and classification (medicinal product, MD, IVD, borderline products)',
-        'Regulatory strategy and choice of procedure',
-        'Regulatory development plan aligned with your CMC, non-clinical and clinical programme',
-        'First CTD or technical documentation, and scientific advice requests',
-        'Interactions with the competent authorities through to decision',
-        'Regulatory processes and tools your future team can take over',
+      outcomes: [
+        { title: 'No recruitment first', text: 'A senior regulatory function from day one, before you build a team.' },
+        { title: 'One point of contact', text: 'A single experienced interlocutor for your partners and the authorities.' },
+        { title: 'Built to hand over', text: 'Processes and documentation your future team can take over.' },
       ],
     },
     items: [
@@ -82,33 +79,33 @@ const content = {
     ],
   },
   expertise: {
-    eyebrow: 'Expertise',
-    title: ['What I take', 'off your plate.'],
-    intro: 'Hands-on work directly on your dossiers, or an expert review to secure your decisions.',
+    eyebrow: 'Technical expertise',
+    title: ['From development', 'to post-approval.'],
+    intro: 'The regulatory scope I cover at each stage of the product lifecycle, for medicinal products, medical devices and in vitro diagnostics.',
     items: [
       {
-        title: 'Regulatory strategy',
-        text: 'Choice of procedure (centralised, decentralised, mutual recognition, national), regulatory development planning, anticipating the questions of the competent authorities.',
+        title: 'Development stage',
+        text: 'Product qualification and classification, including borderline products, regulatory strategy, choice of procedure (centralised, decentralised, mutual recognition, national) and scientific advice.',
       },
       {
-        title: 'Marketing authorisation dossiers',
+        title: 'Submission',
         text: 'Writing, compiling and critically reviewing CTD dossiers (Modules 1 to 5), and preparing responses to authority questions through to decision.',
       },
       {
-        title: 'Lifecycle management',
-        text: 'Variations (Type IA, IB, II), renewals, MA transfers, updates to SmPC, labelling and package leaflet, ongoing compliance.',
+        title: 'Post-approval',
+        text: 'Variations (Type IA, IB, II), renewals, MA transfers, updates to SmPC, labelling and package leaflet.',
       },
       {
         title: 'Biologics & plasma-derived products',
-        text: 'Biological medicinal products, plasma-derived medicinal products and specialty medicines: dossiers with demanding scientific requirements.',
+        text: 'Biological and plasma-derived medicinal products and specialty medicines: dossiers with demanding scientific requirements.',
       },
       {
         title: 'Medical devices & IVDs',
         text: 'Technical documentation under the MDR (EU 2017/745) and the IVDR (EU 2017/746), classification, conformity assessment and post-market obligations.',
       },
       {
-        title: 'Responsible Pharmacist & compliance',
-        text: 'Interim Responsible Pharmacist, regulatory compliance audits, liaison with the ANSM and building the regulatory function.',
+        title: 'Authority interactions',
+        text: 'Hands-on experience with the ANSM, the EMA and EU national competent authorities, the FDA and Asian health authorities.',
       },
     ],
   },
