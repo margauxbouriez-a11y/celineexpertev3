@@ -37,7 +37,7 @@ const content = {
   figures: [
     { value: '20+', label: 'years of regulatory affairs in industry' },
     { value: '9', label: 'pharmaceutical companies, manufacturers and a competent authority' },
-    { value: '4', label: 'markets covered: chemical and biological medicinal products, MD, IVD' },
+    { value: '4', label: 'regulatory markets covered: ANSM, EMA, FDA and Asian authorities' },
     { value: 'CTD', label: 'dossiers for centralised, decentralised, mutual recognition and national procedures' },
   ],
   services: {
@@ -178,10 +178,10 @@ const content = {
       'From specialist residency to senior regulatory roles, across chemical and biological medicinal products, medical devices and in vitro diagnostics.',
     marketsLabel: 'Markets covered',
     markets: [
-      'Chemical medicinal products',
-      'Biological & plasma-derived medicinal products',
-      'Medical devices (MDR)',
-      'In vitro diagnostic medical devices (IVDR)',
+      'ANSM — France',
+      'EMA and EU national competent authorities',
+      'FDA — United States',
+      'Asian health authorities',
     ],
     residencyLabel: 'Industrial pharmacy residency',
     industryLabel: 'Industry',
