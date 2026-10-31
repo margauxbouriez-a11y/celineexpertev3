@@ -49,12 +49,6 @@
 .nav a:hover { color: var(--gold-strong); }
 
 .headerActions { display: flex; align-items: center; gap: 16px; }
-.langSwitch { display: inline-flex; border: 1px solid var(--line); }
-.langSwitch button {
-  padding: 6px 10px; border: 0; background: transparent; cursor: pointer;
-  color: var(--muted-copy); font-family: inherit; font-size: 12px; font-weight: 600; line-height: 1; letter-spacing: .06em;
-}
-.langSwitch .langActive { background: var(--navy); color: #fff; }
 .headerCta {
   padding: 11px 18px; background: var(--navy); color: #fff;
   font-size: 14px; text-decoration: none; transition: background .2s;
@@ -199,6 +193,20 @@
 /* Missions */
 .missionGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 44px 0 40px; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .12); }
 .mission { padding: 28px 24px 30px; background: var(--navy); }
+.dark .intro { color: rgba(224, 230, 238, .82); }
+.featured {
+  display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px;
+  margin-top: 44px; padding: 36px 36px 38px;
+  background: rgba(255, 255, 255, .05); border: 1px solid rgba(224, 199, 131, .45); border-left: 3px solid var(--gold);
+}
+.featured h3 { margin: 14px 0 12px; color: #fff; font: 400 28px/1.25 Georgia, serif; }
+.featured p { margin: 0; color: rgba(224, 230, 238, .88); font-size: 16px; line-height: 1.75; }
+.featuredPoints { margin: 0; padding: 0; list-style: none; }
+.featuredPoints li { position: relative; padding: 10px 0 10px 26px; border-bottom: 1px solid rgba(255, 255, 255, .1); color: #fff; font-size: 15px; line-height: 1.55; }
+.featuredPoints li:first-child { padding-top: 0; }
+.featuredPoints li::before { content: '✓'; position: absolute; left: 0; color: var(--gold-light); }
+.featuredPoints li:first-child::before { top: 0; }
+.featuredPoints li:not(:first-child)::before { top: 10px; }
 .mission h3 { color: #fff; }
 .mission p { margin: 0; color: rgba(224, 230, 238, .82); font-size: 15px; line-height: 1.7; }
 .tag {
@@ -225,6 +233,8 @@
 .regions { padding-left: 24px; border-left: 1px solid var(--line); }
 .regions span { display: block; margin-bottom: 10px; color: var(--muted-copy); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
 .regions strong { color: var(--navy-mid); font: 400 19px/1.7 Georgia, serif; }
+.marketList { margin: 0; padding: 0; list-style: none; }
+.marketList li { padding: 4px 0; color: var(--navy-mid); font: 400 18px/1.45 Georgia, serif; }
 .experienceGroups { display: grid; grid-template-columns: 1.15fr .85fr; gap: 72px; padding-top: 30px; border-top: 1px solid var(--line); }
 .groupLabel { margin: 0 0 6px; color: var(--gold-strong); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .groupLabelSpaced { margin-top: 40px; }
@@ -281,6 +291,7 @@
   .bigNumber { font-size: 90px; }
   .regions { padding-left: 0; border-left: 0; }
   .experienceGroups { grid-template-columns: 1fr; gap: 40px; }
+  .featured { grid-template-columns: 1fr; gap: 28px; padding: 28px 24px 30px; }
   .contact { grid-template-columns: 1fr; gap: 32px; padding-block: 76px; }
   .section { padding: 80px 0; }
   .tinted, .dark { padding-block: 80px; }
@@ -295,8 +306,7 @@
   .brandMark { width: 34px; height: 34px; font-size: 12px; }
   .headerActions { gap: 8px; }
   .headerCta { padding: 9px 12px; font-size: 13px; }
-  .langSwitch button { padding: 6px 8px; }
-  .lede { font-size: 16px; }
+    .lede { font-size: 16px; }
   .primaryButton { padding: 14px 18px; }
   .figure { padding: 20px 18px; }
   .figure strong { font-size: 32px; }

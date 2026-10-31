@@ -11,8 +11,7 @@ pour proposer ses services de consultante à tout type d'entreprise : laboratoir
 pharmaceutiques, biotechs, façonniers/CDMO, fabricants de dispositifs médicaux et de DIV,
 établissements pharmaceutiques (intérim de pharmacien responsable).
 
-Le site est **bilingue français / anglais** (bouton FR | EN en haut à droite ; la langue du
-navigateur est choisie automatiquement).
+Le site est **en anglais**.
 
 ---
 
@@ -20,25 +19,22 @@ navigateur est choisie automatiquement).
 
 | Section | Rôle |
 |---|---|
-| Accueil | Accroche « Votre AMM, sans faux pas. », badge « Disponible pour de nouvelles missions », bouton « Proposer une mission » |
+| Accueil | Accroche « From first product to market authorisation. », badge « Available for new assignments », bouton « Propose an assignment » |
 | Références | Entreprises du parcours : Sanofi, Servier, ANSM, LFB, SERB… |
-| Chiffres clés | 18+ ans, 9 entreprises/autorité, 3 familles de produits, 4 zones |
-| Vous vous reconnaissez ? | 4 situations du client → la réponse apportée |
-| Expertise | 6 services : stratégie, dossiers d'AMM, cycle de vie, biologiques, DM/DIV, pharmacien responsable |
-| Pour qui | 5 types d'entreprises clientes |
-| Missions | 4 formats : forfait, temps partagé, audit, intérim |
-| Pourquoi moi | Atouts différenciants (industrie + ANSM, science + droit…) |
-| Bandeau d'appel | « Un dossier en cours ou un dépôt à venir ? » |
-| Méthode | Comprendre → Planifier → Livrer |
-| Parcours | Expériences en industrie, internat, formation |
-| Contact | E-mail pré-rempli, « copier l'adresse », « Premier échange sans engagement » |
+| Chiffres clés | 20+ ans, 9 entreprises et autorité compétente, 4 marchés couverts, procédures CTD |
+| How I can support your company | Offre phare « Regulatory set-up for new products » (entreprises sans équipe réglementaire), puis 4 formats : forfait, fonction réglementaire externalisée, audit, intérim |
+| Expertise | 6 domaines : stratégie, dossiers d'AMM, cycle de vie, biologiques et dérivés du plasma, DM (MDR) et DIV (IVDR), pharmacien responsable |
+| Who I help | 5 types d'entreprises clientes, en commençant par les start-ups et biotechs |
+| Why work with me | Atouts différenciants (industrie + ANSM, science + droit…) |
+| Career | Parcours, marchés couverts (médicaments chimiques, biologiques et dérivés du plasma, DM, DIV), formation |
+| Contact | E-mail pré-rempli, « copier l'adresse », « First conversation, no commitment » |
 
-Sur téléphone, un bouton « Proposer une mission » reste accessible en bas de l'écran pendant la lecture.
+Sur téléphone, un bouton « Propose an assignment » reste accessible en bas de l'écran pendant la lecture.
 
 ## Modifier un texte
 
-Tous les textes sont dans **[`content.js`](content.js)**, rangés par section, en `fr` puis en `en`.
-Modifier une phrase dans les deux langues, enregistrer (« Commit changes » sur GitHub) :
+Tous les textes sont dans **[`content.js`](content.js)**, rangés par section.
+Modifier une phrase, enregistrer (« Commit changes » sur GitHub) :
 le site se met à jour tout seul en 1 à 2 minutes.
 
 - Adresse e-mail : constante `EMAIL` en haut de `content.js`

@@ -30,25 +30,9 @@ function Brand() {
 }
 
 export default function Home() {
-  const [lang, setLang] = useState('fr')
   const [copied, setCopied] = useState(false)
   const [showBar, setShowBar] = useState(false)
-  const t = content[lang]
-
-  useEffect(() => {
-    let initial = null
-    try {
-      initial = window.localStorage.getItem('lang')
-    } catch (e) {}
-    if (initial !== 'fr' && initial !== 'en') {
-      initial = (navigator.language || 'fr').toLowerCase().startsWith('fr') ? 'fr' : 'en'
-    }
-    setLang(initial)
-  }, [])
-
-  useEffect(() => {
-    document.documentElement.lang = lang
-  }, [lang])
+  const t = content
 
   // Apparition douce des sections au défilement + barre d'action mobile
   useEffect(() => {
@@ -84,13 +68,6 @@ export default function Home() {
     }
   }, [])
 
-  const switchLang = (next) => {
-    setLang(next)
-    try {
-      window.localStorage.setItem('lang', next)
-    } catch (e) {}
-  }
-
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(EMAIL)
@@ -108,7 +85,6 @@ export default function Home() {
     url: SITE_URL,
     email: EMAIL,
     image: `${SITE_URL}celine-bouriez.png`,
-    areaServed: ['France', 'Europe', 'United States', 'Asia'],
     founder: {
       '@type': 'Person',
       name: 'Céline Bouriez',
@@ -117,9 +93,10 @@ export default function Home() {
         'Regulatory affairs',
         'Marketing authorisation',
         'CTD dossiers',
-        'Medical devices',
-        'In vitro diagnostics',
-        'Biologics',
+        'Regulatory strategy for new products',
+        'Medical devices (MDR)',
+        'In vitro diagnostic medical devices (IVDR)',
+        'Biological and plasma-derived medicinal products',
       ],
     },
   }
@@ -143,32 +120,19 @@ export default function Home() {
       </Head>
 
       <a className={styles.skip} href="#main">
-        {lang === 'fr' ? 'Aller au contenu' : 'Skip to content'}
+        Skip to content
       </a>
 
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <Brand />
           <nav className={styles.nav} aria-label="Navigation">
+            <a href="#services">{t.nav.services}</a>
             <a href="#expertise">{t.nav.expertise}</a>
             <a href="#clients">{t.nav.clients}</a>
-            <a href="#missions">{t.nav.missions}</a>
             <a href="#career">{t.nav.career}</a>
           </nav>
           <div className={styles.headerActions}>
-            <div className={styles.langSwitch} role="group" aria-label={t.nav.langLabel}>
-              {['fr', 'en'].map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  aria-pressed={lang === l}
-                  className={lang === l ? styles.langActive : undefined}
-                  onClick={() => switchLang(l)}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
             <a className={styles.headerCta} href="#contact">
               {t.nav.cta}
             </a>
@@ -199,7 +163,7 @@ export default function Home() {
                 <a className={styles.primaryButton} href="#contact">
                   {t.hero.primary} <span aria-hidden="true">→</span>
                 </a>
-                <a className={styles.textLink} href="#expertise">
+                <a className={styles.textLink} href="#services">
                   {t.hero.secondary} <span aria-hidden="true">↓</span>
                 </a>
               </div>
@@ -211,12 +175,12 @@ export default function Home() {
                 <span className={styles.portraitLabel}>{t.hero.portraitLabel}</span>
                 <img
                   src={`${BASE}/celine-bouriez.png`}
-                  alt={lang === 'fr' ? 'Portrait de Céline Bouriez' : 'Portrait of Céline Bouriez'}
+                  alt="Portrait of Céline Bouriez"
                   width="296"
                   height="296"
                 />
                 <figcaption>
-                  <strong>18+</strong>
+                  <strong>{t.hero.years}+</strong>
                   <span>{t.hero.portraitStat}</span>
                 </figcaption>
               </figure>
@@ -233,7 +197,7 @@ export default function Home() {
           </ul>
         </section>
 
-        <section className={styles.figures} aria-label={lang === 'fr' ? 'Chiffres clés' : 'Key figures'}>
+        <section className={styles.figures} aria-label="Key figures">
           {t.figures.map((f) => (
             <div key={f.label} className={styles.figure}>
               <strong>{f.value}</strong>
@@ -242,24 +206,38 @@ export default function Home() {
           ))}
         </section>
 
-        <section className={styles.section} aria-labelledby="pains-title" data-reveal>
+        <section className={`${styles.section} ${styles.dark}`} id="services" data-reveal>
           <div className={styles.heading}>
-            <p className={styles.eyebrow}>{t.pains.eyebrow}</p>
-            <h2 id="pains-title">
-              <TwoLine lines={t.pains.title} />
+            <p className={styles.eyebrow}>{t.services.eyebrow}</p>
+            <h2>
+              <TwoLine lines={t.services.title} />
             </h2>
+            <p className={styles.intro}>{t.services.intro}</p>
           </div>
-          <div className={styles.painGrid}>
-            {t.pains.items.map((p, i) => (
-              <article key={p.problem} className={styles.pain}>
-                <span className={styles.num}>{pad(i)}</span>
-                <h3>{p.problem}</h3>
-                <p>
-                  <span className={styles.arrow} aria-hidden="true">→</span> {p.answer}
-                </p>
+          <article className={styles.featured}>
+            <div>
+              <span className={styles.tag}>{t.services.featured.tag}</span>
+              <h3>{t.services.featured.title}</h3>
+              <p>{t.services.featured.text}</p>
+            </div>
+            <ul className={styles.featuredPoints}>
+              {t.services.featured.points.map((pt) => (
+                <li key={pt}>{pt}</li>
+              ))}
+            </ul>
+          </article>
+          <div className={styles.missionGrid}>
+            {t.services.items.map((m) => (
+              <article key={m.title} className={styles.mission}>
+                <span className={styles.tag}>{m.tag}</span>
+                <h3>{m.title}</h3>
+                <p>{m.text}</p>
               </article>
             ))}
           </div>
+          <a className={styles.primaryButton} href="#contact">
+            {t.hero.primary} <span aria-hidden="true">→</span>
+          </a>
         </section>
 
         <section className={`${styles.section} ${styles.tinted}`} id="expertise" data-reveal>
@@ -300,27 +278,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={`${styles.section} ${styles.dark}`} id="missions" data-reveal>
-          <div className={styles.heading}>
-            <p className={styles.eyebrow}>{t.missions.eyebrow}</p>
-            <h2>
-              <TwoLine lines={t.missions.title} />
-            </h2>
-          </div>
-          <div className={styles.missionGrid}>
-            {t.missions.items.map((m) => (
-              <article key={m.title} className={styles.mission}>
-                <span className={styles.tag}>{m.tag}</span>
-                <h3>{m.title}</h3>
-                <p>{m.text}</p>
-              </article>
-            ))}
-          </div>
-          <a className={styles.primaryButton} href="#contact">
-            {t.hero.primary} <span aria-hidden="true">→</span>
-          </a>
-        </section>
-
         <section className={styles.section} aria-labelledby="strengths-title" data-reveal>
           <div className={styles.split}>
             <div className={styles.heading}>
@@ -340,43 +297,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.banner} data-reveal>
-          <div>
-            <h2>{t.banner.title}</h2>
-            <p>{t.banner.text}</p>
-          </div>
-          <a className={styles.primaryButton} href="#contact">
-            {t.banner.button} <span aria-hidden="true">→</span>
-          </a>
-        </section>
-
-        <section className={`${styles.section} ${styles.tinted}`} aria-labelledby="approach-title" data-reveal>
-          <div className={styles.split}>
-            <div className={styles.heading}>
-              <p className={styles.eyebrow}>{t.approach.eyebrow}</p>
-              <h2 id="approach-title">
-                <TwoLine lines={t.approach.title} />
-              </h2>
-              <p className={styles.intro}>{t.approach.intro}</p>
-            </div>
-            <ol className={styles.steps}>
-              {t.approach.steps.map((s, i) => (
-                <li key={s.title} className={styles.step}>
-                  <span className={styles.num}>{pad(i)}</span>
-                  <div>
-                    <h3>{s.title}</h3>
-                    <p>{s.text}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
         <section className={styles.section} id="career" data-reveal>
           <div className={styles.careerIntro}>
             <div className={styles.bigNumber}>
-              18<span>+</span>
+              {t.hero.years}<span>+</span>
             </div>
             <div className={styles.heading}>
               <p className={styles.eyebrow}>{t.career.eyebrow}</p>
@@ -387,7 +311,11 @@ export default function Home() {
             </div>
             <div className={styles.regions}>
               <span>{t.career.marketsLabel}</span>
-              <strong>{t.career.markets.join(' · ')}</strong>
+              <ul className={styles.marketList}>
+                {t.career.markets.map((m) => (
+                  <li key={m}>{m}</li>
+                ))}
+              </ul>
             </div>
           </div>
 
